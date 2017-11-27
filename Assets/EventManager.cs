@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 // This is an example to show how you can send data and events between objects
@@ -12,19 +12,34 @@ using System.Collections;
 public class EventManager : MonoBehaviour 
 {
 
-	public delegate void CustomAction();
-	public static event CustomAction DispatchCustomEvent;
+    public delegate void CustomAction();
+    public static event CustomAction DispatchCustomEvent;
 
-	public delegate void CustomActionWithData(string str);
-	public static event CustomActionWithData DispatchCustomEventWithData;
+    public delegate void CustomActionWithData(string str); 
+    public static event CustomActionWithData DispatchCustomEventWithData;
 
-	void OnEnable()
-	{   
-		// Broadcast event to ObjectB (this can be to any gameObject within the EventManager gameObject)
-		BroadcastMessage("ChatBotMessageEvent", "Hello World from ");
-		DispatchCustomEvent();
-		string str = "Hello World from";
-		DispatchCustomEventWithData (str);
-	}
-		
+    private void Start()
+    {
+        // Broadcast event to ObjectB (this can be to any gameObject within the EventManager gameObject)
+        BroadcastMessage("ChatBotMessageEvent", "Hello World from ");
+        if (DispatchCustomEvent != null)
+            DispatchCustomEvent();
+        string str = "Hello World from";
+        if (DispatchCustomEventWithData != null)
+            DispatchCustomEventWithData(str);
+    }
+
+    /*
+     * For debugging - GUI  
+    */
+    
+    /* void OnGUI()
+    {
+        if (GUI.Button(new Rect(Screen.width / 2 - 50, 5, 100, 30), "Click"))
+        {
+            if (DispatchCustomEvent != null)
+                DispatchCustomEvent();
+        }
+    }*/
+
 }
