@@ -1,5 +1,5 @@
 # UnityEventHandlingDemo
-## This small Unity C# project should help those who wish to dispatch/recieve events in the following ways:
+<strong>This small Unity C# project should help those who wish to dispatch/recieve events in the following ways:</strong>
 
 - Using Delegate Events
 - Using Delegate Events with data
